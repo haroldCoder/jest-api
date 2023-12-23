@@ -3,9 +3,16 @@ const server = require("../index");
 
 describe('/GET api/notes', () => {
     it('Method GET is positive response', async()=>{
-        const response = await request(server).get("/api/notes");
-        expect(response.statusCode).toBe(200);
-        expect(response.get('Content-Type')).toMatch(/json/);
+        await request(server).get("/api/notes")
+        .expect("Content-Type", /json/)
+        .expect(200);
     })
 });
 
+describe('/POST api/notes', () => {
+    it('Save note in MongoDB', (done) => {
+        const newNote = {title: "first note", description: "description of first note", author: "koder"};
+        request(server).post("/api/notes").send(newNote)
+        .expect(200, done)
+    });
+});

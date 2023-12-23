@@ -3,7 +3,7 @@ import { INote } from "../interface/INote";
 
 class NotesDB{
     private notesSchema: Schema<INote>;
-    protected collect: Model<INote>;
+    protected static collect: Model<INote>;
 
     constructor(table: string){
         this.notesSchema = new Schema({
@@ -26,8 +26,10 @@ class NotesDB{
                 type: Date
             }
         },{timestamps: true});
-
-        this.collect = model("notes", this.notesSchema);
+        if(!NotesDB.collect){
+            NotesDB.collect = model(table, this.notesSchema);
+        }
+        
     }
 }
 
