@@ -16,3 +16,12 @@ describe('/POST api/notes', () => {
         .expect(200, done)
     });
 });
+
+describe('/PUT api/notes/:id', ()=>{
+    it('Update note in MongoDB', (done)=>{
+        const note = {title: "update note", description: "description of update note", author: "koder"};
+
+        request(server).put(`/api/notes/65873d3cf623ed64efc01bdd`).send(note)
+        .expect(200, done)
+    })
+})

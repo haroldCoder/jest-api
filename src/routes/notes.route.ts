@@ -15,4 +15,12 @@ router.route("/api/notes")
     new Notes(req, res).saveNote({title: title, description: description, author: author, date: new Date()});
 })
 
+router.route("/api/notes/:id")
+.put((req: Request, res: Response)=>{
+    const {id} = req.params
+    const {title, description, author} = req.body;
+
+    new Notes(req, res).updateNote(id, {title: title, description: description, author: author, date: new Date()});
+})
+
 module.exports = router;
