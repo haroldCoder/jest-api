@@ -8,8 +8,8 @@ class ConnectMongoDB{
         this.mongouri = mongouri;
     }
 
-    Connect = async() =>{
-        await mongoose.connect(this.mongouri,{})
+    Connect = () =>{
+        mongoose.connect(this.mongouri,{})
 
         this.connection.once('open', ()=>{
             console.log('db connected');
