@@ -33,19 +33,34 @@ class Notes extends NotesDB {
         }
     }
 
-    updateNote = async(id: string, {title, description, author}: INote) =>{
-        try{
-          await NotesDB.collect.updateOne({
+    updateNote = async (id: string, { title, description, author }: INote) => {
+        try {
+            await NotesDB.collect.updateOne({
                 _id: id
-            }, {$set: {
-                title: title,
-                description: description,
-                author: author
-            }})  
+            }, {
+                $set: {
+                    title: title,
+                    description: description,
+                    author: author
+                }
+            })
 
             this.res.status(200).send("note update");
         }
-        catch(err){
+        catch (err) {
+            this.res.status(500).send(`ocurred error ${err}`)
+        }
+    }
+
+    deleteNote = async (id: string) => {
+        try {
+            await Notes.collect.deleteOne({
+                _id: id
+            })
+
+            this.res.status(200).send("note delete")
+        }
+        catch (err) {
             this.res.status(500).send(`ocurred error ${err}`)
         }
     }

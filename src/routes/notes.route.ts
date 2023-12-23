@@ -23,4 +23,11 @@ router.route("/api/notes/:id")
     new Notes(req, res).updateNote(id, {title: title, description: description, author: author, date: new Date()});
 })
 
+.delete((req: Request, res: Response)=>{
+    const {id} = req.params
+
+    new Notes(req, res).deleteNote(id);
+})
+
+
 module.exports = router;

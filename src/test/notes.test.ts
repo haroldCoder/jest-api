@@ -25,3 +25,10 @@ describe('/PUT api/notes/:id', ()=>{
         .expect(200, done)
     })
 })
+
+describe('/DELETE api/notes/:id', () => {
+    it('Delete note in MongoDB', (done)=>{
+        request(server).delete(`/api/notes/65873e3728914df4ec4900bf`)
+        .expect(200, done)
+    })
+});
