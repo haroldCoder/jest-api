@@ -2,8 +2,8 @@ import {Model, Schema, model} from "mongoose"
 import { INote } from "../interface/INote";
 
 class NotesDB{
-    notesSchema: Schema<INote>;
-    collect: Model<INote>;
+    private notesSchema: Schema<INote>;
+    protected collect: Model<INote>;
 
     constructor(table: string){
         this.notesSchema = new Schema({
