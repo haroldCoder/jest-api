@@ -1,12 +1,11 @@
 import express from "express"
 import dotenv from "dotenv";
-import ConnectMongoDB from "./connection/connectMongoDB";
+import bodyParser from "body-parser";
 
 dotenv.config();
 const app = express();
 
-const connectmongo = new ConnectMongoDB(process.env.MONGO_URI ?? "");
-connectmongo.Connect();
+app.use(bodyParser.json());
 
 app.use("/", require("./routes/notes.route"));
 
